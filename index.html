@@ -3,38 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自己紹介</title>
+    <title>My Life</title>
 		<!-- reset.css ress -->
 		<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="body">
-    <header class="header">
-        <nav class="nav">
-            <ul>
-                <li><a href="#profile">プロフィール</a></li>
-                <li><a href="#hobbies">趣味</a></li>
-            </ul>
-        </nav>
-        <h1>わたしの自己紹介サイト</h1>
-    </header>
-    <main>
-        <section id="profile">
-            <h2>プロフィール</h2>
-            <p>こんにちは、わたしは[あなたの名前]です。これはわたしの自己紹介サイトです。</p>
-        </section>
-        <section id="hobbies">
-            <h2>趣味</h2>
-            <ul>
-                <li>読書</li>
-                <li>旅行</li>
-                <li>プログラミング</li>
-            </ul>
-        </section>
-    </main>
-    <footer class="footer">
-        <p>&copy; 2024 わたしの自己紹介サイト</p>
-    </footer>
+    <div class="cover cover-home">
+         <header class="page-header wrapper">
+             <h1 class="align-center">
+                <a href="index.html"><img class="logo" src="images/logo.svg" alt="My Life"></a>
+            </h1>
+            <nav>
+                <ul class="main-nav font-english">
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="hololive.html">HOLOLIVE</a></li>
+                    <li><a href="music.html">MUSIC</a></li>
+                    <li><a href="watch.html">WATCH</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <h2 class="page-title font-english">ようこそ！</h2>
+    </div>
+     
+    <section class="about">
+        <h3 class="heading-large font-english">About Site</h3>
+        <p>
+            My Lifeでは自分の推しを中心に好きなもの・ことを紹介するサイトです。
+        </p>
+         <div class="align-center">
+            <a class="btn" href="about.html">View More</a>
+         </div>
+    </section>
+
+        <footer class="page-footer">
+            <h3 class="heading-large font-english">Information</h3>
+            <table class="info">
+                <ul class="main-nav font-english">
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="hololive.html">HOLOLIVE</a></li>
+                    <li><a href="music.html">MUSIC</a></li>
+                    <li><a href="watch.html">WATCH</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </table>
+            <div class="copyright">
+                <small>&copy; 2025 My Life</small>
+            </div>
+        </footer>
     <script src="js/scripts.js"></script>
 </body>
 </html>
