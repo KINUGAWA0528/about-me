@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="ja" id="htmlElement">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-ja="今日のホロメン - Hololive Production" data-en="Today's Hololive Member - Hololive Production">今日のホロメン - Hololive Production</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans JP', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    .nav-links a:hover { color: #4c8a4c; }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #4c8a4c;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .language-selector {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+    .lang-btn:hover { background: rgba(76, 138, 76, 0.3); border-color: #4c8a4c; }
+    .lang-btn.active { background: #4c8a4c; border-color: #4c8a4c; }
+    .section {
+      padding: 5rem 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .section-title {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: linear-gradient(45deg, #4c8a4c, #779977);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hololive-selector p {
+    text-align: center;
+  }
+  #colorDisplay {
+    text-align: center;
+  }
+    #colorDisplay {
+      text-align: center;
+    }
+    .hololive-selector {
+      background: rgba(45, 74, 45, 0.2);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 5rem auto 2rem auto;
+      max-width: 800px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .select-button {
+  background: linear-gradient(45deg, #4c8a4c, #779977);
+  color: #fff;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(76, 138, 76, 0.3);
+  margin-bottom: 2rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+    }
+    .select-button:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(76, 138, 76, 0.4); }
+    .select-button:active { transform: translateY(0); }
+    .member-card {
+      margin-top: 2rem;
+      background: rgba(45, 74, 45, 0.3);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(76, 138, 76, 0.2);
+      display: none;
+    }
+    .member-card.show { display: block; animation: fadeInUp 0.6s ease forwards; }
+    .member-name { font-size: 2rem; font-weight: bold; color: #4c8a4c; margin-bottom: 1rem; }
+    .member-description { color: #ccc; font-size: 1.1rem; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #fff;
+      font-size: 0.9rem;
+      background-color: rgba(44, 62, 80, 0.9);
+      margin-top: 3rem;
+      backdrop-filter: blur(10px);
+    }
+    footer p { margin: 0; }
+    @media (max-width: 768px) {
+      .nav-container { flex-direction: column; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .section-title { font-size: 2rem; }
+      .hololive-selector { padding: 2rem; margin: 7rem 1rem 2rem 1rem; }
+      .member-name { font-size: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .section-title { font-size: 1.2rem; }
+      .hololive-selector { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">Hololive</div>
+      <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="hololive.html">HOLOLIVE</a></li>
+        <li><a href="music.html">MUSIC</a></li>
+        <li><a href="watch.html">WATCH</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+      <div class="language-selector">
+        <button class="lang-btn active" onclick="switchLanguage('ja')">JP</button>
+        <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+      </div>
+    </div>
+  </nav>
+  <section class="section hololive-selector">
+  <h2 class="section-title" data-ja="🌟 今日のホロメン 🌟" data-en="🌟 Today's Holomem 🌟">🌟 今日のホロメン 🌟</h2>
+    <p style="font-size: 1.1rem; color: #4c8a4c; margin-bottom: 2rem;" 
+       data-ja="毎日新しい推しメンバーを発見しよう！" 
+       data-en="Discover a new favorite member every day!">
+      毎日新しい推しメンバーを発見しよう！
+    </p>
+    <button class="select-button" onclick="showRandomColor()" 
+        data-ja="🎲 ホロメンを選ぶ 🎲" 
+        data-en="🎲 Choose a Hololive Member 🎲">
+     推す
+    </button>
+    <div id="colorDisplay" 
+       data-ja="ここにホロライブメンバーが表示されます ✨" 
+       data-en="Hololive member will be displayed here ✨">
+      ここにホロライブメンバーが表示されます ✨
+    </div>
+    <div id="memberCard" class="member-card">
+      <div class="member-name" id="memberName"></div>
+      <div class="member-description" 
+         data-ja="今日の推しメンバーです！🎉" 
+         data-en="Today's favorite member! 🎉">
+      今日の推しメンバーです！🎉
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p data-ja="&copy; 2025 Hololive Production Fan Site ✨" data-en="&copy; 2025 Hololive Production Fan Site ✨">&copy; 2025 Hololive Production Fan Site ✨</p>
+    <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;" 
+       data-ja="このサイトはファンメイドです" 
+       data-en="This is a fan-made site">
+      このサイトはファンメイドです / This is a fan-made site
+    </p>
+  </footer>
+
+  <script>
+    // 現在の言語状態
+    let currentLanguage = 'ja';
+    
+    // 言語切り替え関数
+    function switchLanguage(lang) {
+      if (currentLanguage === lang) return; // 同じ言語の場合は何もしない
+      
+      currentLanguage = lang;
+      const htmlElement = document.getElementById('htmlElement');
+      htmlElement.lang = lang;
+      
+      // アニメーション効果を追加
+      const mainContent = document.querySelector('.hololive-selector');
+      mainContent.classList.add('language-switch-animation');
+      
+      // 全ての多言語対応要素を更新
+      const elements = document.querySelectorAll('[data-ja][data-en]');
+      elements.forEach(element => {
+        const text = element.getAttribute(`data-${lang}`);
+        if (text) {
+          if (element.tagName === 'TITLE') {
+            document.title = text;
+          } else {
+            element.innerHTML = text;
+          }
+        }
+      });
+      
+      // ボタンの状態を更新
+      updateButtonStates(lang);
+      
+      // ローカルストレージに保存
+      localStorage.setItem('preferredLanguage', lang);
+      
+      // アニメーション完了後にクラスを削除
+      setTimeout(() => {
+        mainContent.classList.remove('language-switch-animation');
+      }, 600);
+    }
+    
+    // ボタンの状態更新
+    function updateButtonStates(lang) {
+      const jpButton = document.querySelector('.JP-button');
+      const enButton = document.querySelector('.EN-button');
+      
+      // アクティブ状態のスタイル
+      if (lang === 'ja') {
+        jpButton.style.opacity = '1';
+        jpButton.style.transform = 'scale(1.1)';
+        enButton.style.opacity = '0.6';
+        enButton.style.transform = 'scale(1)';
+      } else {
+        enButton.style.opacity = '1';
+        enButton.style.transform = 'scale(1.1)';
+        jpButton.style.opacity = '0.6';
+        jpButton.style.transform = 'scale(1)';
+      }
+    }
+    
+    // ページ読み込み時に保存された言語設定を復元
+    window.addEventListener('load', () => {
+      const savedLanguage = localStorage.getItem('preferredLanguage') || 'ja';
+      switchLanguage(savedLanguage);
+      
+      // アニメーション
+      const section = document.querySelector('.hololive-selector');
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(30px)';
+      
+      setTimeout(() => {
+        section.style.transition = 'all 1s ease';
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+      }, 100);
+    });
+
+    function getRandomItem(array) {
+      const index = Math.floor(Math.random() * array.length);
+      return array[index];
+    }
+
+    // ホロライブメンバーリスト（多言語対応）
+    const hololiveMembers = [
+      {name: 'ときのそら', nameEn: 'Tokino Sora', emoji: '⭐'},
+      {name: 'ロボ子さん', nameEn: 'Roboco-san', emoji: '🤖'},
+      {name: 'さくらみこ', nameEn: 'Sakura Miko', emoji: '🌸'},
+      {name: '星街すいせい', nameEn: 'Hoshimachi Suisei', emoji: '☄️'},
+      {name: 'AZKi', nameEn: 'AZKi', emoji: '🎵'},
+      {name: '夜空メル', nameEn: 'Yozora Mel', emoji: '🌙'},
+      {name: 'アキ・ローゼンタール', nameEn: 'Aki Rosenthal', emoji: '🍎'},
+      {name: '赤井はあと', nameEn: 'Akai Haato', emoji: '❤️'},
+      {name: '白上フブキ', nameEn: 'Shirakami Fubuki', emoji: '🦊'},
+      {name: '夏色まつり', nameEn: 'Natsuiro Matsuri', emoji: '🎪'},
+      {name: '湊あくあ', nameEn: 'Minato Aqua', emoji: '💧'},
+      {name: '紫咲シオン', nameEn: 'Murasaki Shion', emoji: '🔮'},
+      {name: '百鬼あやめ', nameEn: 'Nakiri Ayame', emoji: '👹'},
+      {name: '癒月ちょこ', nameEn: 'Yuzuki Choco', emoji: '🍫'},
+      {name: '大空スバル', nameEn: 'Oozora Subaru', emoji: '🚗'},
+      {name: '大神ミオ', nameEn: 'Ookami Mio', emoji: '🐺'},
+      {name: '猫又おかゆ', nameEn: 'Nekomata Okayu', emoji: '🐱'},
+      {name: '戌神ころね', nameEn: 'Inugami Korone', emoji: '🐕'},
+      {name: '兎田ぺこら', nameEn: 'Usada Pekora', emoji: '🐰'},
+      {name: '不知火フレア', nameEn: 'Shiranui Flare', emoji: '🔥'},
+      {name: '白銀ノエル', nameEn: 'Shirogane Noel', emoji: '⚔️'},
+      {name: '宝鐘マリン', nameEn: 'Houshou Marine', emoji: '🏴‍☠️'},
+      {name: '天音かなた', nameEn: 'Amane Kanata', emoji: '👼'},
+      {name: '角巻わため', nameEn: 'Tsunomaki Watame', emoji: '🐏'},
+      {name: '常闇トワ', nameEn: 'Tokoyami Towa', emoji: '😈'},
+      {name: '姫森ルーナ', nameEn: 'Himemori Luna', emoji: '👑'},
+      {name: '獅白ぼたん', nameEn: 'Shishiro Botan', emoji: '🦁'},
+      {name: '雪花ラミィ', nameEn: 'Yukihana Lamy', emoji: '❄️'},
+      {name: '尾丸ポルカ', nameEn: 'Omaru Polka', emoji: '🎪'},
+      {name: '桃鈴ねね', nameEn: 'Momosuzu Nene', emoji: '🍑'},
+      {name: 'ラプラス・ダークネス', nameEn: 'La+ Darknesss', emoji: '🌌'},
+      {name: '鷹嶺ルイ', nameEn: 'Takane Lui', emoji: '🦅'},
+      {name: '博衣こより', nameEn: 'Hakui Koyori', emoji: '🧪'},
+      {name: '沙花叉クロヱ', nameEn: 'Sakamata Chloe', emoji: '🔱'},
+      {name: '風真いろは', nameEn: 'Kazama Iroha', emoji: '🍃'},
+      {name: '森カリオペ', nameEn: 'Mori Calliope', emoji: '💀'},
+      {name: '小鳥遊キアラ', nameEn: 'Takanashi Kiara', emoji: '🐔'},
+      {name: '一伊那尓栖', nameEn: 'Ninomae Ina\'nis', emoji: '🐙'},
+      {name: 'がうる・ぐら', nameEn: 'Gawr Gura', emoji: '🦈'},
+      {name: 'ワトソン・アメリア', nameEn: 'Watson Amelia', emoji: '🔍'},
+      {name: 'IRyS', nameEn: 'IRyS', emoji: '💎'},
+      {name: 'セレス・ファウナ', nameEn: 'Ceres Fauna', emoji: '🌿'},
+      {name: 'オーロ・クロニー', nameEn: 'Ouro Kronii', emoji: '⏰'},
+      {name: '七詩ムメイ', nameEn: 'Nanashi Mumei', emoji: '🪶'},
+      {name: 'ハコス・ベールズ', nameEn: 'Hakos Baelz', emoji: '🎭'}
+    ];
+
+    function showRandomColor() {
+      const randomMember = getRandomItem(hololiveMembers);
+      const displayElement = document.getElementById('colorDisplay');
+      const memberCard = document.getElementById('memberCard');
+      const memberName = document.getElementById('memberName');
+      
+      // ボタンを一時的に無効化
+      const button = document.querySelector('.select-button');
+      button.disabled = true;
+      
+      // 現在の言語に応じてボタンテキストを設定
+      const buttonText = currentLanguage === 'ja' ? '選択中... 🎲' : 'Selecting... 🎲';
+      button.textContent = buttonText;
+      
+      // アニメーション効果のためにカードを一度隠す
+      memberCard.classList.remove('show');
+      
+      // 少し遅れてから新しいメンバーを表示
+      setTimeout(() => {
+        const memberDisplayName = currentLanguage === 'ja' ? randomMember.name : randomMember.nameEn;
+        const resultText = currentLanguage === 'ja' ? 
+          '選ばれたホロライブメンバー:' : 
+          'Selected Hololive Member:';
+          
+        displayElement.innerHTML = `
+          ${resultText}<br>
+          <span style="color: #0084ff; font-weight: bold;">${randomMember.emoji} ${memberDisplayName} ${randomMember.emoji}</span>
+        `;
+        memberName.textContent = `${randomMember.emoji} ${memberDisplayName} ${randomMember.emoji}`;
+        memberCard.classList.add('show');
+        
+        // ボタンを再有効化
+        button.disabled = false;
+        const finalButtonText = currentLanguage === 'ja' ? 
+          '🎲 ホロメンを選ぶ 🎲' : 
+          '🎲 Choose a Hololive Member 🎲';
+        button.textContent = finalButtonText;
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>

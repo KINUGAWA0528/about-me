@@ -3,55 +3,525 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Life</title>
-		<!-- reset.css ress -->
-		<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
-    <link rel="stylesheet" href="css/styles.css">
+    <title>自己紹介 - Portfolio</title>
+    
+    <!--******************************GOOGLE FONTS*****************************-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!--******************************FAVICON*****************************-->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <style>
+        /* ベーススタイル */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        /* ヘッダー */
+        .header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(45deg, #1a1a1a 0%, #2d4a2d 100%);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(76, 138, 76, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(119, 153, 119, 0.3) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* ナビゲーション */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #4c8a4c;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4c8a4c;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 言語切替スタイル */
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover {
+            background: rgba(76, 138, 76, 0.3);
+            border-color: #4c8a4c;
+        }
+
+        .lang-btn.active {
+            background: #4c8a4c;
+            border-color: #4c8a4c;
+        }
+
+        /* セクション共通スタイル */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #4c8a4c, #779977);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #2d4a2d, #4c8a4c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: rgba(45, 74, 45, 0.3);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(119, 153, 119, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #4c8a4c;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .content-card {
+            background: rgba(45, 74, 45, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(119, 153, 119, 0.2);
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #2d4a2d, #4c8a4c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #fff;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #4c8a4c;
+        }
+
+        .card-description {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+                font-size: 4rem;
+            }
+
+        }
+    </style>
 </head>
-<body class="body">
-    <div class="cover cover-home">
-         <header class="page-header wrapper">
-             <h1 class="align-center">
-                <a href="index.html"><img class="logo" src="images/logo.svg" alt="My Life"></a>
-            </h1>
-            <nav>
-                <ul class="main-nav font-english">
-                    <li><a href="about.html">ABOUT</a></li>
-                    <li><a href="hololive.html">HOLOLIVE</a></li>
-                    <li><a href="music.html">MUSIC</a></li>
-                    <li><a href="watch.html">WATCH</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
-                </ul>
-            </nav>
-        </header>
-        <h2 class="page-title font-english">ようこそ！</h2>
-    </div>
-     
-    <section class="about">
-        <h3 class="heading-large font-english">About Site</h3>
-        <p>
-            My Lifeでは自分の推しを中心に好きなもの・ことを紹介するサイトです。
-        </p>
-         <div class="align-center">
-            <a class="btn" href="about.html">View More</a>
-         </div>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="hololive.html">HOLOLIVE</a></li>
+                <li><a href="music.html">MUSIC</a></li>
+                <li><a href="watch.html">WATCH</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="switchLanguage('ja')">JP</button>
+                <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヘッダー -->
+    <header class="header" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">自己紹介</h1>
+            <p class="hero-subtitle">私の興味と趣味について</p>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">ABOUT</h2>
+        <div class="about-content">
+            <div class="profile-image">
+                👤
+            </div>
+            <div class="about-text">
+                <h3>こんにちは！</h3>
+                <p>
+                    様々な趣味と興味を持つクリエイターです。アニメ、音楽、Hololiveなど、
+                    幅広いエンターテイメントコンテンツに情熱を注いでいます。
+                </p>
+                <br>
+                <p>
+                    特にHololiveのVTuberたちの配信を楽しんだり、様々なジャンルの音楽を聴いたり、
+                    アニメを見ることが大好きです。それぞれの分野から新しい発見や感動を得ています。
+                </p>
+                <br>
+                <p>
+                    これらの趣味を通じて、多くの人と共感し合えるような交流を築いていきたいと思います。
+                </p>
+            </div>
+        </div>
     </section>
 
-        <footer class="page-footer">
-            <h3 class="heading-large font-english">Information</h3>
-            <table class="info">
-                <ul class="main-nav font-english">
-                    <li><a href="about.html">ABOUT</a></li>
-                    <li><a href="hololive.html">HOLOLIVE</a></li>
-                    <li><a href="music.html">MUSIC</a></li>
-                    <li><a href="watch.html">WATCH</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
-                </ul>
-            </table>
-            <div class="copyright">
-                <small>&copy; 2025 My Life</small>
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <h2 class="section-title">INTERESTS</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🎵</div>
+                <h3 class="skill-title">Music</h3>
+                <p>様々なジャンルの音楽を楽しんでいます。J-POP、ロック、クラシックまで幅広く聴きます。</p>
             </div>
-        </footer>
-    <script src="js/scripts.js"></script>
+            <div class="skill-card">
+                <div class="skill-icon">📺</div>
+                <h3 class="skill-title">Anime</h3>
+                <p>アニメ鑑賞が趣味です。感動的な作品から日常系まで、様々な作品を楽しんでいます。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎮</div>
+                <h3 class="skill-title">Games</h3>
+                <p>ゲーム実況やプレイを楽しんでいます。RPGからアクションゲームまで幅広くプレイします。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎬</div>
+                <h3 class="skill-title">Movies</h3>
+                <p>映画鑑賞も好きです。洋画から邦画、アニメ映画まで様々なジャンルを楽しんでいます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hololive Section -->
+    <section class="section" id="hololive">
+        <h2 class="section-title">HOLOLIVE</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-image">🌟</div>
+                <div class="card-content">
+                    <h3 class="card-title">好きなVTuber</h3>
+                    <p class="card-description">Hololiveの様々なメンバーの配信を楽しんでいます。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🎤</div>
+                <div class="card-content">
+                    <h3 class="card-title">歌配信</h3>
+                    <p class="card-description">メンバーの歌配信やオリジナル楽曲が特に好きです。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🎮</div>
+                <div class="card-content">
+                    <h3 class="card-title">ゲーム配信</h3>
+                    <p class="card-description">ゲーム実況配信を見るのも楽しみの一つです。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Section -->
+    <section class="section" id="music">
+        <h2 class="section-title">MUSIC</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-image">🎵</div>
+                <div class="card-content">
+                    <h3 class="card-title">J-POP</h3>
+                    <p class="card-description">日本のポップスを中心に聴いています。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🎸</div>
+                <div class="card-content">
+                    <h3 class="card-title">Rock</h3>
+                    <p class="card-description">ロックミュージックも好きなジャンルの一つです。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🎼</div>
+                <div class="card-content">
+                    <h3 class="card-title">Classical</h3>
+                    <p class="card-description">クラシック音楽の美しさにも魅了されています。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Anime Section -->
+    <section class="section" id="anime">
+        <h2 class="section-title">ANIME</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-image">🎸</div>
+                <div class="card-content">
+                    <h3 class="card-title">ぼっち・ざ・ろっく！</h3>
+                    <p class="card-description">音楽をテーマにした青春アニメ。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🕵️</div>
+                <div class="card-content">
+                    <h3 class="card-title">名探偵コナン</h3>
+                    <p class="card-description">長年愛され続けている推理アニメ。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🏐</div>
+                <div class="card-content">
+                    <h3 class="card-title">ハイキュー</h3>
+                    <p class="card-description">バレーボールを題材にしたスポーツアニメ。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title">CONTACT</h2>
+        <div class="about-text" style="text-align: center;">
+            <p>GitHub: <a href="https://github.com/your-username" target="_blank" style="color: #4c8a4c;">your-username</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/your-linkedin/" target="_blank" style="color: #4c8a4c;">your-linkedin</a></p>
+        </div>
+    </section>
+
+    <script>
+        function switchLanguage(lang) {
+            // 言語切り替え機能の実装
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // ここで実際の言語切り替え処理を実装
+            console.log('Language switched to:', lang);
+        }
+
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ - Portfolio</title>
+    
+    <!--******************************GOOGLE FONTS*****************************-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!--******************************FAVICON*****************************-->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <style>
+        /* ベーススタイル */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        /* ヘッダー */
+        .header {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(45deg, #1a1a1a 0%, #2d4a2d 100%);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(76, 138, 76, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(119, 153, 119, 0.3) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* ナビゲーション */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #4c8a4c;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4c8a4c;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 言語切替スタイル */
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover {
+            background: rgba(76, 138, 76, 0.3);
+            border-color: #4c8a4c;
+        }
+
+        .lang-btn.active {
+            background: #4c8a4c;
+            border-color: #4c8a4c;
+        }
+
+        /* セクション共通スタイル */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #4c8a4c, #779977);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* フォームスタイル */
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(45, 74, 45, 0.2);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(119, 153, 119, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4c8a4c;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(119, 153, 119, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #f0f0f0;
+            font-size: 1rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #4c8a4c;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(76, 138, 76, 0.2);
+        }
+
+        .form-textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(240, 240, 240, 0.5);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #4c8a4c, #779977);
+            color: #fff;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(76, 138, 76, 0.3);
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(76, 138, 76, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 連絡先情報 */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: rgba(45, 74, 45, 0.3);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(119, 153, 119, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .info-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #4c8a4c;
+        }
+
+        .info-details {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .info-details a {
+            color: #4c8a4c;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-details a:hover {
+            color: #779977;
+        }
+
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-form {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .info-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .info-card:nth-child(1) { animation-delay: 0.2s; }
+        .info-card:nth-child(2) { animation-delay: 0.4s; }
+        .info-card:nth-child(3) { animation-delay: 0.6s; }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* 成功メッセージ */
+        .success-message {
+            background: rgba(76, 138, 76, 0.3);
+            color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+            border: 1px solid #4c8a4c;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="hololive.html">HOLOLIVE</a></li>
+                <li><a href="music.html">MUSIC</a></li>
+                <li><a href="watch.html">WATCH</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="switchLanguage('ja')">JP</button>
+                <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヘッダー -->
+    <header class="header" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">お問い合わせ</h1>
+            <p class="hero-subtitle">お気軽にご連絡ください</p>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title">CONTACT</h2>
+        
+        <!-- 連絡先情報 -->
+        <div class="contact-info">
+            <div class="info-card">
+                <div class="info-icon">📧</div>
+                <h3 class="info-title">メール</h3>
+                <div class="info-details">
+                    <a href="mailto:your-email@example.com">your-email@example.com</a>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">💼</div>
+                <h3 class="info-title">GitHub</h3>
+                <div class="info-details">
+                    <a href="https://github.com/your-username" target="_blank">github.com/your-username</a>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">🔗</div>
+                <h3 class="info-title">LinkedIn</h3>
+                <div class="info-details">
+                    <a href="https://linkedin.com/in/your-linkedin" target="_blank">linkedin.com/in/your-linkedin</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- お問い合わせフォーム -->
+        <div class="contact-form">
+            <form id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">お名前（姓）</label>
+                        <input type="text" id="firstName" name="firstName" class="form-input" placeholder="山田" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">お名前（名）</label>
+                        <input type="text" id="lastName" name="lastName" class="form-input" placeholder="太郎" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email" class="form-label">メールアドレス</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="your-email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="form-label">電話番号（任意）</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="090-1234-5678">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject" class="form-label">件名</label>
+                    <input type="text" id="subject" name="subject" class="form-input" placeholder="お問い合わせの件名をご入力ください" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">お問い合わせ内容</label>
+                    <textarea id="message" name="message" class="form-textarea" placeholder="お問い合わせ内容を詳しくご記入ください" required></textarea>
+                </div>
+
+                <div style="text-align: center;">
+                    <button type="submit" class="submit-btn">送信する</button>
+                </div>
+
+                <div id="successMessage" class="success-message">
+                    お問い合わせありがとうございます。内容を確認次第、ご連絡いたします。
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function switchLanguage(lang) {
+            // 言語切り替え機能の実装
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // ここで実際の言語切り替え処理を実装
+            console.log('Language switched to:', lang);
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // フォームデータの取得
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // 実際の送信処理はここに実装
+            console.log('Form submitted:', data);
+            
+            // 成功メッセージの表示
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+            
+            // フォームのリセット
+            event.target.reset();
+            
+            // 3秒後にメッセージを非表示
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        }
+
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // フォーム入力のアニメーション効果
+        document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
