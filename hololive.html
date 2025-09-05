@@ -10,14 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="CSS/hololive.css">
-
+  
 </head>
 <body>
   <nav class="navbar">
     <div class="nav-container">
       <div class="logo">Hololive</div>
       <ul class="nav-links">
-        <li><a href="home.html">HOME</a></li>
+        <li><a href="index.html">HOME</a></li>
         <li><a href="about.html">ABOUT</a></li>
         <li><a href="hololive.html">HOLOLIVE</a></li>
         <li><a href="music.html">MUSIC</a></li>
@@ -26,37 +26,55 @@
         <li><a href="contact.html">CONTACT</a></li>
       </ul>
       <div class="language-selector">
-        <button class="lang-btn active" onclick="switchLanguage('ja')">JP</button>
-        <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+        <button class="lang-btn active" data-lang="ja">JP</button>
+        <button class="lang-btn" data-lang="en">EN</button>
       </div>
     </div>
   </nav>
+
+  <header class="header" id="about">
+        <div class="hero-content">
+            <h1 class="hero-title">HOLOLIVE</h1>
+            <p class="hero-subtitle" data-lang-key="hololive-hero-subtitle">ホロライブの魅力とは</p>
+        </div>
+    </header>
+
   <section class="section hololive-selector">
-  <h2 class="section-title" data-ja="🌟 今日のホロメン 🌟" data-en="🌟 Today's Holomem 🌟">🌟 今日のホロメン 🌟</h2>
+  <h2 class="section-title" data-lang-key="hololive-today"="🌟 今日のホロメン 🌟">🌟 今日のホロメン 🌟</h2>
     <p style="font-size: 1.1rem; color: #4c8a4c; margin-bottom: 2rem;" 
-       data-ja="毎日新しい推しメンバーを発見しよう！" 
-       data-en="Discover a new favorite member every day!">
+       data-lang-key="hololive-today-desc">
       毎日新しい推しメンバーを発見しよう！
     </p>
     <button class="select-button" onclick="showRandomColor()" 
-        data-ja="🎲 ホロメンを選ぶ 🎲" 
-        data-en="🎲 Choose a Hololive Member 🎲">
+        data-lang-key="hololive-select-button">
      推す
     </button>
     <div id="colorDisplay" 
-       data-ja="ここにホロライブメンバーが表示されます ✨" 
-       data-en="Hololive member will be displayed here ✨">
+       data-lang-key="hololive-member-display">
       ここにホロライブメンバーが表示されます ✨
     </div>
     <div id="memberCard" class="member-card">
       <div class="member-name" id="memberName"></div>
       <div class="member-description" 
-         data-ja="今日の推しメンバーです！🎉" 
-         data-en="Today's favorite member! 🎉">
+         data-lang-key="hololive-member-description">
       今日の推しメンバーです！🎉
       </div>
     </div>
   </section>
+
+  <section class="section" id="about-profile">
+        <h2 class="section-title">HOLOLIVE</h2>
+        <div class="about-content">
+            <div class="profile-image"></div>
+            <div class="about-text">
+                <h3 data-lang-key="hololive-about">ホロライブとは</h3>
+                <p data-lang-key="hololive-about-desc">
+                    カバー株式会社が運営する世界最大級の女性VTuber（バーチャルユーチューバー）グループです。
+                    YouTubeでのゲーム実況、歌、雑談などのライブ配信を中心に活動し、クオリティの高い3Dキャラクターモデルを使用したオンラインライブやイベントも開催しています。
+                </p>
+            </div>
+        </div>
+    </section>
 
   <footer>
     <p data-ja="&copy; 2025 Hololive Production Fan Site ✨" data-en="&copy; 2025 Hololive Production Fan Site ✨">&copy; 2025 Hololive Production Fan Site ✨</p>
@@ -151,51 +169,79 @@
 
     // ホロライブメンバーリスト（多言語対応）
     const hololiveMembers = [
-      {name: 'ときのそら', nameEn: 'Tokino Sora', emoji: '⭐'},
+      {name: 'ときのそら', nameEn: 'Tokino Sora', emoji: '🌟'},
       {name: 'ロボ子さん', nameEn: 'Roboco-san', emoji: '🤖'},
       {name: 'さくらみこ', nameEn: 'Sakura Miko', emoji: '🌸'},
-      {name: '星街すいせい', nameEn: 'Hoshimachi Suisei', emoji: '☄️'},
-      {name: 'AZKi', nameEn: 'AZKi', emoji: '🎵'},
+      {name: '星街すいせい', nameEn: 'Hoshimachi Suisei', emoji: '⭐'},
+      {name: 'AZKi', nameEn: 'AZKi', emoji: '🎤'},
       {name: '夜空メル', nameEn: 'Yozora Mel', emoji: '🌙'},
-      {name: 'アキ・ローゼンタール', nameEn: 'Aki Rosenthal', emoji: '🍎'},
+      {name: 'アキ・ローゼンタール', nameEn: 'Aki Rosenthal' , emoji: '🍎'},
       {name: '赤井はあと', nameEn: 'Akai Haato', emoji: '❤️'},
-      {name: '白上フブキ', nameEn: 'Shirakami Fubuki', emoji: '🦊'},
-      {name: '夏色まつり', nameEn: 'Natsuiro Matsuri', emoji: '🎪'},
+      {name: '白上フブキ', nameEn: 'Shirakami Fubuki', emoji: '🐺'},
+      {name: '夏色まつり', nameEn: 'Natsuiro Matsuri', emoji: '🎉'},
       {name: '湊あくあ', nameEn: 'Minato Aqua', emoji: '💧'},
-      {name: '紫咲シオン', nameEn: 'Murasaki Shion', emoji: '🔮'},
+      {name: '紫咲シオン', nameEn: 'Murasaki Shion', emoji: '💜'},
       {name: '百鬼あやめ', nameEn: 'Nakiri Ayame', emoji: '👹'},
       {name: '癒月ちょこ', nameEn: 'Yuzuki Choco', emoji: '🍫'},
-      {name: '大空スバル', nameEn: 'Oozora Subaru', emoji: '🚗'},
+      {name: '大空スバル', nameEn: 'Oozora Subaru', emoji: '🏔️'},
       {name: '大神ミオ', nameEn: 'Ookami Mio', emoji: '🐺'},
       {name: '猫又おかゆ', nameEn: 'Nekomata Okayu', emoji: '🐱'},
-      {name: '戌神ころね', nameEn: 'Inugami Korone', emoji: '🐕'},
+      {name: '戌神ころね', nameEn: 'Inugami Korone', emoji: '🐶'},
       {name: '兎田ぺこら', nameEn: 'Usada Pekora', emoji: '🐰'},
       {name: '不知火フレア', nameEn: 'Shiranui Flare', emoji: '🔥'},
-      {name: '白銀ノエル', nameEn: 'Shirogane Noel', emoji: '⚔️'},
+      {name: '白銀ノエル', nameEn: 'Shirogane Noel', emoji: '⚪'},
       {name: '宝鐘マリン', nameEn: 'Houshou Marine', emoji: '🏴‍☠️'},
-      {name: '天音かなた', nameEn: 'Amane Kanata', emoji: '👼'},
-      {name: '角巻わため', nameEn: 'Tsunomaki Watame', emoji: '🐏'},
-      {name: '常闇トワ', nameEn: 'Tokoyami Towa', emoji: '😈'},
-      {name: '姫森ルーナ', nameEn: 'Himemori Luna', emoji: '👑'},
-      {name: '獅白ぼたん', nameEn: 'Shishiro Botan', emoji: '🦁'},
+      {name: '天音かなた', nameEn: 'Amane Kanata', emoji: '☁️'},
+      {name: '角巻わため', nameEn: 'Tsunomaki Watame', emoji: '🐑'},
+      {name: '常闇トワ', nameEn: 'Tokoyami Towa', emoji: '🌌'},
+      {name: '姫森ルーナ', nameEn: 'Himemori Luna', emoji: '🌙'},
+      {name: '獅白ぼたん', nameEn: 'Shishiro Botan', emoji: '🦊'},
       {name: '雪花ラミィ', nameEn: 'Yukihana Lamy', emoji: '❄️'},
-      {name: '尾丸ポルカ', nameEn: 'Omaru Polka', emoji: '🎪'},
+      {name: '尾丸ポルカ', nameEn: 'Omaru Polka', emoji: '🎭'},
       {name: '桃鈴ねね', nameEn: 'Momosuzu Nene', emoji: '🍑'},
       {name: 'ラプラス・ダークネス', nameEn: 'La+ Darknesss', emoji: '🌌'},
       {name: '鷹嶺ルイ', nameEn: 'Takane Lui', emoji: '🦅'},
-      {name: '博衣こより', nameEn: 'Hakui Koyori', emoji: '🧪'},
-      {name: '沙花叉クロヱ', nameEn: 'Sakamata Chloe', emoji: '🔱'},
+      {name: '博衣こより', nameEn: 'Hakui Koyori', emoji: '📚'},
+      {name: '沙花叉クロヱ', nameEn: 'Sakamata Chloe', emoji: '🌸'},
       {name: '風真いろは', nameEn: 'Kazama Iroha', emoji: '🍃'},
-      {name: '森カリオペ', nameEn: 'Mori Calliope', emoji: '💀'},
-      {name: '小鳥遊キアラ', nameEn: 'Takanashi Kiara', emoji: '🐔'},
-      {name: '一伊那尓栖', nameEn: 'Ninomae Ina\'nis', emoji: '🐙'},
-      {name: 'がうる・ぐら', nameEn: 'Gawr Gura', emoji: '🦈'},
+      {name: '森カリオペ', nameEn: 'Mori Calliope', emoji: '🎤'},
+      {name: '小鳥遊キアラ', nameEn: 'Takanashi Kiara', emoji: '🐦'},
+      {name: '一伊那尓栖', nameEn: 'Ninomae Ina\'nis', emoji: '📜'},
+      {name: 'がうる・ぐら', nameEn: 'Gawr Gura', emoji: '🐟'},
       {name: 'ワトソン・アメリア', nameEn: 'Watson Amelia', emoji: '🔍'},
-      {name: 'IRyS', nameEn: 'IRyS', emoji: '💎'},
-      {name: 'セレス・ファウナ', nameEn: 'Ceres Fauna', emoji: '🌿'},
-      {name: 'オーロ・クロニー', nameEn: 'Ouro Kronii', emoji: '⏰'},
-      {name: '七詩ムメイ', nameEn: 'Nanashi Mumei', emoji: '🪶'},
-      {name: 'ハコス・ベールズ', nameEn: 'Hakos Baelz', emoji: '🎭'}
+      {name: 'IRyS', nameEn: 'IRyS', emoji: '🎶'},
+      {name: 'セレス・ファウナ', nameEn: 'Ceres Fauna', emoji: '🌳'},
+      {name: 'オーロ・クロニー', nameEn: 'Ouro Kronii', emoji: '🕰️'},
+      {name: '七詩ムメイ', nameEn: 'Nanashi Mumei', emoji: '📜'},
+      {name: 'ハコス・ベールズ', nameEn: 'Hakos Baelz', emoji: '🎭'},
+      {name: 'シオリ・ノヴェラ', nameEn: 'Shiori Novella', emoji: '📚'},
+      {name: '古石ビジュー', nameEn: 'Furuse Bijou', emoji: '💎'},
+      {name: 'ネリッサ・レイヴンクロフト', nameEn: 'Nerissa Ravencroft', emoji: '🦇'},
+      {name: 'フワワ・アビスガード', nameEn: 'Fuwawa Abisgard', emoji: '🌸'},
+      {name: 'モココ・アビスガード', nameEn: 'Mokoko Abisgard', emoji: '🌼'},
+      {name: 'エリザベス・ローズ・ブラッドフレイム', nameEn: 'Elizabeth Rose Bloodfream', emoji: '🩸'},
+      {name: 'ジジ・ムリン', nameEn: 'Jiji Murin', emoji: '🐱'},
+      {name: 'セシリア・イマーグリーン', nameEn: 'Cecilia Immergreen', emoji: '🌿'},
+      {name: 'ラオーラ・パンテーラ', nameEn: 'Laola Pantera', emoji: '🐆'},
+      {name: 'アユンダ・リス', nameEn: 'Ayunda Risu', emoji: '🐿️'},
+      {name: 'ムーナ・ホシノヴァ', nameEn: 'Moona Hoshinova', emoji: '🌙'},
+      {name: 'アイラニ・イオフィフティーン', nameEn: 'Airani Iofifteen', emoji: '🌺'},
+      {name: 'クレイジー・オリー', nameEn: 'Ceres Fauna', emoji: '🦉'},
+      {name: 'アーニャ・メルフィッサ', nameEn: 'Anya Melfissa', emoji: '🦇'},
+      {name: 'パヴォリア・レイネ', nameEn: 'Pavolia Reine', emoji: '🦚'},
+      {name: 'ベスティア・ゼータ', nameEn: 'Bestia Zeta', emoji: '🦁'},
+      {name: 'カエラ・コヴァルスキア', nameEn: 'Kaela Kovalskia', emoji: '🦊'},
+      {name: 'こぼ・かなえる', nameEn: 'Kobo Kanaeru', emoji: '🐸'},
+      {name: '火威青',nameEn: 'Hiiro Aoi', emoji: '🔥'},
+      {name: '音乃瀬奏',nameEn: 'Otonose Kanade', emoji: '🎵'},
+      {name: '一条莉々華',nameEn: 'Ichijo Ririka', emoji: '🌸'},
+      {name: '儒烏風亭らでん',nameEn: 'Juu Fuutou Raiden', emoji: '⚡'},
+      {name: '轟はじめ',nameEn: 'Todoroki Hajime', emoji: '💥'},
+      {name: '響咲リオナ',nameEn: 'Hibiki Saki Riona', emoji: '🎤'},
+      {name: '虎金妃笑虎',nameEn: 'Kogane Kisara', emoji: '🐯'},
+      {name: '水宮枢',nameEn: 'Mizumiya Kuu', emoji: '💧'},
+      {name: '輪堂千速',nameEn: 'Rin堂千速', emoji: '⚡'},
+      {name: '綺々羅々ヴィヴィ',nameEn: 'Kira Kira Vivi', emoji: '🌈'},
     ];
 
     function showRandomColor() {
@@ -240,4 +286,5 @@
   </script>
 
 </body>
+<script src="js/i18n.js"></script>
 </html>

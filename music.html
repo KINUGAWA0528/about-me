@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUSIC - 自己紹介</title>
-    <link rel="stylesheet" href="CSS/music.css">
+    <link rel="stylesheet" href="CSS/index.css">
     
     </style>
 </head>
@@ -12,13 +12,14 @@
     <!-- ナビゲーション -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">🎵 MUSIC</div>
+            <div class="logo">Portfolio</div>
             <ul class="nav-links">
-                <li><a href="home.html" data-lang-key="nav.home">HOME</a></li>
+                <li><a href="index.html" data-lang-key="nav.home">HOME</a></li>
                 <li><a href="about.html" data-lang-key="nav.about">ABOUT</a></li>
                 <li><a href="hololive.html" data-lang-key="nav.hololive">HOLOLIVE</a></li>
 				<li><a href="music.html" data-lang-key="nav.music">MUSIC</a></li>
 				<li><a href="watch.html" data-lang-key="nav.watch">WATCH</a></li>
+                <li><a href="cat.html" data-lang-key="nav.cat">CAT</a></li>
                 <li><a href="contact.html" data-lang-key="nav.contact">CONTACT</a></li>
             </ul>
             <div class="language-selector">
@@ -30,20 +31,9 @@
 
     <!-- ヘッダー -->
     <header class="header" id="home">
-        <div class="musical-notes">
-            <div class="note">♪</div>
-            <div class="note">♫</div>
-            <div class="note">♪</div>
-            <div class="note">♬</div>
-            <div class="note">♪</div>
-            <div class="note">♫</div>
-            <div class="note">♪</div>
-            <div class="note">♬</div>
-        </div>
         <div class="hero-content">
-            <h1 class="hero-title" data-lang-key="hero.title">MUSIC</h1>
-            <p class="hero-subtitle" data-lang-key="hero.subtitle">音楽を日常に</p>
-            <p data-lang-key="hero.welcome">Welcome to my musical journey</p>
+            <h1 class="hero-title">MUSIC</h1>
+            <p class="hero-subtitle">音楽を日常に</p>
         </div>
     </header>
      
@@ -54,41 +44,36 @@
         <div class="skills-grid">
             <div class="skill-card">
                 <div class="skill-icon">🎹</div>
-                <h3 class="skill-title" data-lang-key="skills.piano.title">Piano</h3>
+                <h3 class="skill-title" data-lang-key="skills.piano.title">Guitar</h3>
                 <p data-lang-key="skills.piano.desc">15年の経験を持つピアノ演奏。クラシックからジャズまで幅広いスタイルに対応。</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">🎸</div>
-                <h3 class="skill-title" data-lang-key="skills.guitar.title">Guitar</h3>
+                <h3 class="skill-title" data-lang-key="skills.guitar.title">Bass</h3>
                 <p data-lang-key="skills.guitar.desc">アコースティック、エレキギター両方を演奏。フィンガーピッキングからロックソロまで。</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">🎵</div>
-                <h3 class="skill-title" data-lang-key="skills.composition.title">Composition</h3>
+                <h3 class="skill-title" data-lang-key="skills.composition.title"></h3>Drums</h3>
                 <p data-lang-key="skills.composition.desc">オリジナル楽曲の作曲・編曲。様々なジャンルの楽曲制作が可能。</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">🎧</div>
-                <h3 class="skill-title" data-lang-key="skills.production.title">Music Production</h3>
+                <h3 class="skill-title" data-lang-key="skills.production.title">Violin</h3>
                 <p data-lang-key="skills.production.desc">DAWを使用した音楽制作。レコーディング、ミキシング、マスタリングまで。</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">🎤</div>
-                <h3 class="skill-title" data-lang-key="skills.vocal.title">Vocal</h3>
+                <h3 class="skill-title" data-lang-key="skills.vocal.title">Keyboard</h3>
                 <p data-lang-key="skills.vocal.desc">ボーカルパフォーマンス。コーラスワークや声楽技術にも精通。</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">📝</div>
-                <h3 class="skill-title" data-lang-key="skills.theory.title">Music Theory</h3>
-                <p data-lang-key="skills.theory.desc">音楽理論の深い理解。楽曲分析や音楽教育にも活用。</p>
+                <h3 class="skill-title" data-lang-key="skills.theory.title">DTM</h3>
+                <p data-lang-key="skills.theory.desc">オリジナル楽曲の作曲・編曲。様々なジャンルの楽曲制作が可能。</p>
             </div>
         </div>
     </section>
-
-    <!-- フッター -->
-    <footer class="footer">
-    <p data-lang-key="footer.copyright">&copy; 2025 MUSIC. All rights reserved. Made with 🎶 and ❤️</p>
-    </footer>
 
     <script src="js/i18n.js"></script>
     <script src="js/music.js"></script>
@@ -130,7 +115,6 @@
             });
         }, observerOptions);
 
-        // すべてのセクションを監視
         document.querySelectorAll('.section').forEach(section => {
             section.style.opacity = '0';
             section.style.transform = 'translateY(50px)';

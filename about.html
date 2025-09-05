@@ -8,81 +8,122 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="CSS/index.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">Portfolio</div>
             <ul class="nav-links">
-                <li><a href="home.html">HOME</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="hololive.html">HOLOLIVE</a></li>
-                <li><a href="music.html">MUSIC</a></li>
-                <li><a href="watch.html">WATCH</a></li>
-                <li><a href="cat.html">CAT</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="index.html" data-lang-key="nav.home">HOME</a></li>
+                <li><a href="about.html" data-lang-key="nav.about">ABOUT</a></li>
+                <li><a href="hololive.html" data-lang-key="nav.hololive">HOLOLIVE</a></li>
+                <li><a href="music.html" data-lang-key="nav.music">MUSIC</a></li>
+                <li><a href="watch.html" data-lang-key="nav.watch">WATCH</a></li>
+                <li><a href="cat.html" data-lang-key="nav.cat">CAT</a></li>
+                <li><a href="contact.html" data-lang-key="nav.contact">CONTACT</a></li>
             </ul>
             <div class="language-selector">
-                <button class="lang-btn active" onclick="switchLanguage('ja')">JP</button>
-                <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+                <button class="lang-btn active" data-lang="ja">JP</button>
+                <button class="lang-btn" data-lang="en">EN</button>
             </div>
         </div>
     </nav>
     <header class="header" id="about">
         <div class="hero-content">
-            <h1 class="hero-title">自己紹介</h1>
-            <p class="hero-subtitle">私のプロフィール</p>
+            <h1 class="hero-title" data-lang-key="about.title">ABOUT</h1>
+            <p class="hero-subtitle" data-lang-key="about.subtitle">私とは</p>
         </div>
     </header>
     <section class="section" id="about-profile">
-        <h2 class="section-title">ABOUT ME</h2>
+    <h2 class="section-title" data-lang-key="aboutme.title">ABOUT ME</h2>
         <div class="about-content">
             <div class="profile-image">👤</div>
             <div class="about-text">
-                <h3>こんにちは！</h3>
-                <p>
-                    様々な趣味と興味を持つクリエイターです。アニメ、音楽、Hololiveなど、
-                    幅広いエンターテイメントコンテンツに情熱を注いでいます。
-                </p>
+                <h3 data-lang-key="aboutme.greeting">こんにちは！</h3>
+                <p data-lang-key="aboutme.intro1">様々な趣味と興味を持つクリエイターです。アニメ、音楽、Hololiveなど、幅広いエンターテイメントコンテンツに情熱を注いでいます。</p>
                 <br>
-                <p>
-                    特にHololiveのVTuberたちの配信を楽しんだり、様々なジャンルの音楽を聴いたり、
-                    アニメを見ることが大好きです。それぞれの分野から新しい発見や感動を得ています。
-                </p>
+                <p data-lang-key="aboutme.intro2">特にHololiveのVTuberたちの配信を楽しんだり、様々なジャンルの音楽を聴いたり、アニメを見ることが大好きです。それぞれの分野から新しい発見や感動を得ています。</p>
                 <br>
-                <p>
-                    これらの趣味を通じて、多くの人と共感し合えるような交流を築いていきたいと思います。
-                </p>
+                <p data-lang-key="aboutme.intro3">これらの趣味を通じて、多くの人と共感し合えるような交流を築いていきたいと思います。</p>
             </div>
         </div>
     </section>
 
     <section class="section" id="photo-gallery">
-        <h2 class="section-title">PHOTO GALLERY</h2>
+    <h2 class="section-title" data-lang-key="gallery.title">PHOTO GALLERY</h2>
         <div class="content-grid">
             <div class="content-card">
-                <div class="card-image">
-                    <img src="images/photo1.jpg" alt="写真1" style="width:100%;height:100%;object-fit:cover;border-radius:15px;">
-                </div>
+                <img src="images/IMG_6642.webp" alt="写真1" class="card-photo">
                 <div class="card-content">
-                    <h3 class="card-title">春の公園</h3>
-                    <p class="card-description">桜が満開の公園で撮影した一枚です。</p>
+                    <h3 class="card-title" data-lang-key="gallery.kirishima">霧島神宮</h3>
                 </div>
             </div>
             <div class="content-card">
-                <div class="card-image">
-                    <img src="images/photo2.jpg" alt="写真2" style="width:100%;height:100%;object-fit:cover;border-radius:15px;">
+                <img src="images/photo2.jpg" alt="写真2" class="card-photo">
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="gallery.seaside">海辺の夕焼け</h3>
                 </div>
+            </div>
+            <div class="content-card">
+                <img src="images/photo3.jpg" alt="写真3" class="card-photo">
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="gallery.city">街の夜景</h3>
+                    <p class="card-description" data-lang-key="gallery.citydesc">都会の夜景を高層ビルから撮影しました。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="images/IMG_6642.webp" alt="写真1" class="card-photo">
+                <div class="card-content">
+                    <h3 class="card-title">霧島神宮</h3>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="images/photo2.jpg" alt="写真2" class="card-photo">
                 <div class="card-content">
                     <h3 class="card-title">海辺の夕焼け</h3>
-                    <p class="card-description">美しい夕焼けが広がる海辺の風景です。</p>
                 </div>
             </div>
             <div class="content-card">
-                <div class="card-image">
-                    <img src="images/photo3.jpg" alt="写真3" style="width:100%;height:100%;object-fit:cover;border-radius:15px;">
+                <img src="images/photo3.jpg" alt="写真3" class="card-photo">
+                <div class="card-content">
+                    <h3 class="card-title">街の夜景</h3>
+                    <p class="card-description">都会の夜景を高層ビルから撮影しました。</p>
                 </div>
+            </div>
+            <div class="content-card">
+                <img src="images/IMG_6642.webp" alt="写真1" class="card-photo">
+                <div class="card-content">
+                    <h3 class="card-title">霧島神宮</h3>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="images/photo2.jpg" alt="写真2" class="card-photo">
+                <div class="card-content">
+                    <h3 class="card-title">海辺の夕焼け</h3>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="images/photo3.jpg" alt="写真3" class="card-photo">
+                <div class="card-content">
+                    <h3 class="card-title">街の夜景</h3>
+                    <p class="card-description">都会の夜景を高層ビルから撮影しました。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="images/IMG_6642.webp" alt="写真1" class="card-photo">
+                <div class="card-content">
+                    <h3 class="card-title">霧島神宮</h3>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="images/photo2.jpg" alt="写真2" class="card-photo">
+                <div class="card-content">
+                    <h3 class="card-title">海辺の夕焼け</h3>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="images/photo3.jpg" alt="写真3" class="card-photo">
                 <div class="card-content">
                     <h3 class="card-title">街の夜景</h3>
                     <p class="card-description">都会の夜景を高層ビルから撮影しました。</p>
@@ -90,13 +131,10 @@
             </div>
         </div>
     </section>
+
     <script>
-        function switchLanguage(lang) {
-            const buttons = document.querySelectorAll('.lang-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            console.log('Language switched to:', lang);
-        }
+    // i18n.jsで自動切替
     </script>
+    <script src="js/i18n.js"></script>
 </body>
 </html>

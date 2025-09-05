@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自己紹介 - Portfolio</title>
+    <title>HOME - Portfolio</title>
     
     <!--******************************GOOGLE FONTS*****************************-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
     <!--******************************FAVICON*****************************-->
     <link rel="icon" type="image/png" href="images/favicon.png">
 
-    <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="CSS/index.css">
 </head>
 <body>
     <!-- ナビゲーション -->
@@ -21,16 +21,17 @@
         <div class="nav-container">
             <div class="logo">Portfolio</div>
             <ul class="nav-links">
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="hololive.html">HOLOLIVE</a></li>
-                <li><a href="music.html">MUSIC</a></li>
-                <li><a href="watch.html">WATCH</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="index.html" data-lang-key="nav.home">HOME</a></li>
+                <li><a href="about.html" data-lang-key="nav.about">ABOUT</a></li>
+                <li><a href="hololive.html" data-lang-key="nav.hololive">HOLOLIVE</a></li>
+                <li><a href="music.html" data-lang-key="nav.music">MUSIC</a></li>
+                <li><a href="watch.html" data-lang-key="nav.watch">WATCH</a></li>
+                <li><a href="cat.html" data-lang-key="nav.cat">CAT</a></li>
+                <li><a href="contact.html" data-lang-key="nav.contact">CONTACT</a></li>
             </ul>
             <div class="language-selector">
-                <button class="lang-btn active" onclick="switchLanguage('ja')">JP</button>
-                <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+                <button class="lang-btn active" data-lang="ja">JP</button>
+                <button class="lang-btn" data-lang="en">EN</button>
             </div>
         </div>
     </nav>
@@ -38,32 +39,24 @@
     <!-- ヘッダー -->
     <header class="header" id="home">
         <div class="hero-content">
-            <h1 class="hero-title">自己紹介</h1>
-            <p class="hero-subtitle">私の興味と趣味について</p>
+            <h1 class="hero-title" data-lang-key="home.title">HOME</h1>
+            <p class="hero-subtitle" data-lang-key="home.subtitle">このサイトについて</p>
         </div>
     </header>
 
     <!-- About Section -->
     <section class="section" id="about">
-        <h2 class="section-title">ABOUT</h2>
+    <h2 class="section-title" data-lang-key="about.title">ABOUT</h2>
         <div class="about-content">
             <div class="profile-image">
                 👤
             </div>
             <div class="about-text">
-                <h3>こんにちは！</h3>
-                <p>
-                    様々な趣味と興味を持つクリエイターです。アニメ、音楽、Hololiveなど、
-                    幅広いエンターテイメントコンテンツに情熱を注いでいます。
-                </p>
+                <h3 data-lang-key="about.greeting">このサイトでは</h3>
+                <p data-lang-key="about.intro">私の推しについて紹介しています。ホロライブや音楽、アニメ・映画、そして愛猫に情熱を注いでいます！</p>
                 <br>
-                <p>
-                    特にHololiveのVTuberたちの配信を楽しんだり、様々なジャンルの音楽を聴いたり、
-                    アニメを見ることが大好きです。それぞれの分野から新しい発見や感動を得ています。
-                </p>
-                <br>
-                <p>
-                    これらの趣味を通じて、多くの人と共感し合えるような交流を築いていきたいと思います。
+                <p data-lang-key="about.enjoy">
+                    ぜひ、楽しんでご観覧ください！
                 </p>
             </div>
         </div>
@@ -71,54 +64,78 @@
 
     <!-- Skills Section -->
     <section class="section" id="skills">
-        <h2 class="section-title">INTERESTS</h2>
+    <h2 class="section-title" data-lang-key="skills.title">INTERESTS</h2>
         <div class="skills-grid">
             <div class="skill-card">
+                <div class="skill-icon">🏆</div>
+                <h3 class="skill-title" data-lang-key="skills.hololive.title">Hololive</h3>
+                <p data-lang-key="skills.hololive.desc">毎日配信を観たり、音楽を聴いたり、推し活したりしています。</p>
+            </div>
+            <div class="skill-card">
                 <div class="skill-icon">🎵</div>
-                <h3 class="skill-title">Music</h3>
-                <p>様々なジャンルの音楽を楽しんでいます。J-POP、ロック、クラシックまで幅広く聴きます。</p>
+                <h3 class="skill-title" data-lang-key="skills.music.title">Music</h3>
+                <p data-lang-key="skills.music.desc">様々なジャンルの音楽を楽しんでいます。J-POP、ロック、クラシックまで幅広く聴きます。また、楽器を演奏したり、作詞作曲・編曲・MIX・マスタリングにも挑戦しています。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎤</div>
+                <h3 class="skill-title" data-lang-key="skills.live.title">Live</h3>
+                <p data-lang-key="skills.live.desc">ほぼホロライブのライブですが、ぼっちざろっくやアーティストさんのライブも嗜んでいます。</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">📺</div>
-                <h3 class="skill-title">Anime</h3>
-                <p>アニメ鑑賞が趣味です。感動的な作品から日常系まで、様々な作品を楽しんでいます。</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🎮</div>
-                <h3 class="skill-title">Games</h3>
-                <p>ゲーム実況やプレイを楽しんでいます。RPGからアクションゲームまで幅広くプレイします。</p>
+                <h3 class="skill-title" data-lang-key="skills.anime.title">Anime</h3>
+                <p data-lang-key="skills.anime.desc">アニメ鑑賞が趣味です。感動的な作品から日常系まで、様々な作品を楽しんでいます。</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">🎬</div>
-                <h3 class="skill-title">Movies</h3>
-                <p>映画鑑賞も好きです。洋画から邦画、アニメ映画まで様々なジャンルを楽しんでいます。</p>
+                <h3 class="skill-title" data-lang-key="skills.movies.title">Movies</h3>
+                <p data-lang-key="skills.movies.desc">映画鑑賞も好きです。洋画から邦画、アニメ映画まで様々なジャンルを楽しんでいます。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🐱</div>
+                <h3 class="skill-title" data-lang-key="skills.cat.title">Cat</h3>
+                <p data-lang-key="skills.cat.desc">愛猫の寝顔やご飯を食べている時の姿を見るのと、一緒に遊んでいる時が幸せです。</p>
             </div>
         </div>
     </section>
 
     <!-- Hololive Section -->
     <section class="section" id="hololive">
-        <h2 class="section-title">HOLOLIVE</h2>
+    <h2 class="section-title" data-lang-key="hololive.title">HOLOLIVE</h2>
         <div class="content-grid">
-            <div class="content-card">
-                <div class="card-image">🌟</div>
-                <div class="card-content">
-                    <h3 class="card-title">好きなVTuber</h3>
-                    <p class="card-description">Hololiveの様々なメンバーの配信を楽しんでいます。</p>
-                </div>
-            </div>
             <div class="content-card">
                 <div class="card-image">🎤</div>
                 <div class="card-content">
-                    <h3 class="card-title">歌配信</h3>
-                    <p class="card-description">メンバーの歌配信やオリジナル楽曲が特に好きです。</p>
+                    <h3 class="card-title" data-lang-key="hololive.3d.title">3D Live</h3>
+                    <p class="card-description" data-lang-key="hololive.3d.desc">Hololiveの様々なメンバーの3Dライブを楽しんでいます。</p>
                 </div>
             </div>
             <div class="content-card">
                 <div class="card-image">🎮</div>
                 <div class="card-content">
-                    <h3 class="card-title">ゲーム配信</h3>
-                    <p class="card-description">ゲーム実況配信を見るのも楽しみの一つです。</p>
+                    <h3 class="card-title" data-lang-key="hololive.game.title">ゲーム配信</h3>
+                    <p class="card-description" data-lang-key="hololive.game.desc">Hololiveの様々なメンバーの配信を楽しんでいます。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🎵</div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="hololive.song.title">歌枠</h3>
+                    <p class="card-description" data-lang-key="hololive.song.desc">Hololiveの様々なメンバーの歌配信を楽しんでいます。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🎲</div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="hololive.variety.title">企画・バラエティ</h3>
+                    <p class="card-description" data-lang-key="hololive.variety.desc">Hololiveの様々なメンバーの企画やバラエティ配信を楽しんでいます。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🍳</div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="hololive.cooking.title">料理</h3>
+                    <p class="card-description" data-lang-key="hololive.cooking.desc">Hololiveの様々なメンバーの料理配信を楽しんでいます。</p>
                 </div>
             </div>
         </div>
@@ -126,66 +143,122 @@
 
     <!-- Music Section -->
     <section class="section" id="music">
-        <h2 class="section-title">MUSIC</h2>
+    <h2 class="section-title" data-lang-key="music.title">MUSIC</h2>
         <div class="content-grid">
             <div class="content-card">
-                <div class="card-image">🎵</div>
+                <div class="card-image">🎸</div>
                 <div class="card-content">
-                    <h3 class="card-title">J-POP</h3>
-                    <p class="card-description">日本のポップスを中心に聴いています。</p>
+                    <h3 class="card-title" data-lang-key="music.guitar.title">Guitar</h3>
+                    <p class="card-description" data-lang-key="music.guitar.desc">アコギでは、弾き語りやソロギターを嗜んでいます。エレキギターでは、ロックやボカロを中心に嗜んでいます。</p>
                 </div>
             </div>
             <div class="content-card">
                 <div class="card-image">🎸</div>
                 <div class="card-content">
-                    <h3 class="card-title">Rock</h3>
-                    <p class="card-description">ロックミュージックも好きなジャンルの一つです。</p>
+                    <h3 class="card-title" data-lang-key="music.bass.title">Bass</h3>
+                    <p class="card-description" data-lang-key="music.bass.desc">ロックやジャズを中心に嗜んでいます。</p>
                 </div>
             </div>
             <div class="content-card">
-                <div class="card-image">🎼</div>
+                <div class="card-image">🥁</div>
                 <div class="card-content">
-                    <h3 class="card-title">Classical</h3>
-                    <p class="card-description">クラシック音楽の美しさにも魅了されています。</p>
+                    <h3 class="card-title" data-lang-key="music.drums.title">Drums</h3>
+                    <p class="card-description" data-lang-key="music.drums.desc">ロックやジャズを中心に嗜んでいます。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🎻</div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="music.violin.title">Violin</h3>
+                    <p class="card-description" data-lang-key="music.violin.desc">クラシックを中心に嗜んでいます。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🎹</div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="music.keyboard.title">Keyboard</h3>
+                    <p class="card-description" data-lang-key="music.keyboard.desc">ボカロやバラード、クラシックを中心に嗜んでいます。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🎧</div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="music.dtm.title">DTM</h3>
+                    <p class="card-description" data-lang-key="music.dtm.desc">ロックやボカロ、バラードなどのオリジナル曲を制作しています。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Anime Section -->
-    <section class="section" id="anime">
-        <h2 class="section-title">ANIME</h2>
+    <!-- WATCH Section -->
+    <section class="section" id="WATCH">
+    <h2 class="section-title" data-lang-key="watch.title">WATCH</h2>
         <div class="content-grid">
             <div class="content-card">
                 <div class="card-image">🎸</div>
                 <div class="card-content">
-                    <h3 class="card-title">ぼっち・ざ・ろっく！</h3>
-                    <p class="card-description">音楽をテーマにした青春アニメ。</p>
+                    <h3 class="card-title" data-lang-key="watch.bocchi.title">ぼっち・ざ・ろっく！</h3>
+                    <p class="card-description" data-lang-key="watch.bocchi.desc">音楽をテーマにした青春アニメ。</p>
                 </div>
             </div>
             <div class="content-card">
                 <div class="card-image">🕵️</div>
                 <div class="card-content">
-                    <h3 class="card-title">名探偵コナン</h3>
-                    <p class="card-description">長年愛され続けている推理アニメ。</p>
+                    <h3 class="card-title" data-lang-key="watch.conan.title">名探偵コナン</h3>
+                    <p class="card-description" data-lang-key="watch.conan.desc">長年愛され続けている推理アニメ。</p>
                 </div>
             </div>
             <div class="content-card">
                 <div class="card-image">🏐</div>
                 <div class="card-content">
-                    <h3 class="card-title">ハイキュー</h3>
-                    <p class="card-description">バレーボールを題材にしたスポーツアニメ。</p>
+                    <h3 class="card-title" data-lang-key="watch.haikyu.title">ハイキュー‼</h3>
+                    <p class="card-description" data-lang-key="watch.haikyu.desc">バレーボールを題材にしたスポーツアニメ。</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-image">🧙‍♂️</div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="watch.hp.title">Harry Potter</h3>
+                    <p class="card-description" data-lang-key="watch.hp.desc">魔法と友情の物語。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🏙️</div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="watch.itaewon.title">梨泰院クラス</h3>
+                    <p class="card-description" data-lang-key="watch.itaewon.desc">韓国のヒューマンドラマ。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🕷️</div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="watch.venom.title">ヴェノム</h3>
+                    <p class="card-description" data-lang-key="watch.venom.desc">ヒーローと悪役の境界を描いたアクション映画。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <h2 class="section-title">CONTACT</h2>
-        <div class="about-text" style="text-align: center;">
-            <p>GitHub: <a href="https://github.com/your-username" target="_blank" style="color: #4c8a4c;">your-username</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/your-linkedin/" target="_blank" style="color: #4c8a4c;">your-linkedin</a></p>
+    <!-- Cat Section -->
+    <section class="section" id="cat">
+        <h2 class="section-title" data-lang-key="cat.title">CAT</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <img src="images/IMG_6642.webp" alt="写真1" class="card-photo">
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="cat.rato.title">ラト</h3>
+                    <p class="card-description"></p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="images/IMG_6642.webp" alt="写真1" class="card-photo">
+                <div class="card-content">
+                    <h3 class="card-title" data-lang-key="cat.rabi.title">ラビ</h3>
+                    <p class="card-description"></p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -211,4 +284,5 @@
         });
     </script>
 </body>
+    <script src="js/i18n.js"></script>
 </html>
