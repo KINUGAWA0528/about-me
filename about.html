@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="CSS/home.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="hololive.html">HOLOLIVE</a></li>
+                <li><a href="music.html">MUSIC</a></li>
+                <li><a href="watch.html">WATCH</a></li>
+                <li><a href="cat.html">CAT</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="switchLanguage('ja')">JP</button>
+                <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+    <header class="header" id="about">
+        <div class="hero-content">
+            <h1 class="hero-title">自己紹介</h1>
+            <p class="hero-subtitle">私のプロフィール</p>
+        </div>
+    </header>
+    <section class="section" id="about-profile">
+        <h2 class="section-title">ABOUT ME</h2>
+        <div class="about-content">
+            <div class="profile-image">👤</div>
+            <div class="about-text">
+                <h3>こんにちは！</h3>
+                <p>
+                    様々な趣味と興味を持つクリエイターです。アニメ、音楽、Hololiveなど、
+                    幅広いエンターテイメントコンテンツに情熱を注いでいます。
+                </p>
+                <br>
+                <p>
+                    特にHololiveのVTuberたちの配信を楽しんだり、様々なジャンルの音楽を聴いたり、
+                    アニメを見ることが大好きです。それぞれの分野から新しい発見や感動を得ています。
+                </p>
+                <br>
+                <p>
+                    これらの趣味を通じて、多くの人と共感し合えるような交流を築いていきたいと思います。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="photo-gallery">
+        <h2 class="section-title">PHOTO GALLERY</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-image">
+                    <img src="images/photo1.jpg" alt="写真1" style="width:100%;height:100%;object-fit:cover;border-radius:15px;">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">春の公園</h3>
+                    <p class="card-description">桜が満開の公園で撮影した一枚です。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">
+                    <img src="images/photo2.jpg" alt="写真2" style="width:100%;height:100%;object-fit:cover;border-radius:15px;">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">海辺の夕焼け</h3>
+                    <p class="card-description">美しい夕焼けが広がる海辺の風景です。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">
+                    <img src="images/photo3.jpg" alt="写真3" style="width:100%;height:100%;object-fit:cover;border-radius:15px;">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">街の夜景</h3>
+                    <p class="card-description">都会の夜景を高層ビルから撮影しました。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function switchLanguage(lang) {
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            console.log('Language switched to:', lang);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫紹介 - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="CSS/cat.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="hololive.html">HOLOLIVE</a></li>
+                <li><a href="music.html">MUSIC</a></li>
+                <li><a href="watch.html">WATCH</a></li>
+                <li><a href="cat.html">CAT</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="switchLanguage('ja')">JP</button>
+                <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+    <header class="header" id="cat">
+        <div class="hero-content">
+            <h1 class="hero-title">猫紹介</h1>
+            <p class="hero-subtitle">うちの猫の魅力を紹介します</p>
+        </div>
+    </header>
+    <section class="section" id="cat-profile">
+        <h2 class="section-title">CAT PROFILE</h2>
+        <div class="about-content">
+            <div class="profile-image">🐾</div>
+            <div class="about-text">
+                <h3>名前：ミケ</h3>
+                <p>
+                    ・三毛猫の女の子<br>
+                    ・好奇心旺盛で元気いっぱい<br>
+                    ・人懐っこくて、すぐに膝の上に乗ってきます<br>
+                    ・おもちゃで遊ぶのが大好き！<br>
+                    ・寝るときは丸くなってゴロゴロ
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="cat-gallery">
+        <h2 class="section-title">CAT GALLERY</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-image">😺</div>
+                <div class="card-content">
+                    <h3 class="card-title">お気に入りの場所</h3>
+                    <p class="card-description">窓辺で日向ぼっこするのが大好きです。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🧸</div>
+                <div class="card-content">
+                    <h3 class="card-title">おもちゃ</h3>
+                    <p class="card-description">ねずみ型のおもちゃでよく遊びます。</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-image">🍚</div>
+                <div class="card-content">
+                    <h3 class="card-title">ごはん</h3>
+                    <p class="card-description">チキン味のカリカリが一番のお気に入り！</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function switchLanguage(lang) {
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            console.log('Language switched to:', lang);
+        }
+    </script>
+</body>
+</html>

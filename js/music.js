@@ -420,9 +420,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const heroSubtitle = document.querySelector('.hero-subtitle');
         
         if (heroTitle && heroSubtitle) {
-            typeWriter(heroTitle, 'Music Soul', 150);
+            typeWriter(heroTitle, 'Music', 150);
             setTimeout(() => {
-                typeWriter(heroSubtitle, '音楽と共に歩む人生 🎶', 100);
+                typeWriter(heroSubtitle, '音楽を日常に', 100);
             }, 2000);
         }
     }, 1000);

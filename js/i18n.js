@@ -16,12 +16,14 @@ class LanguageManager {
     loadTranslations() {
         this.translations = {
             ja: {
-                'nav.home': 'ホーム',
-                'nav.about': '自己紹介',
-                'nav.skills': 'スキル',
-                'nav.contact': 'お問い合わせ',
+                'nav.home': 'HOME',
+                'nav.about': 'ABOUT',
+                'nav.hololive': 'HOLOLIVE',
+                'nav.music': 'MUSIC',
+                'nav.watch': 'WATCH',
+                'nav.contact': 'CONTACT',
                 
-                'hero.title': 'Music Soul',
+                'hero.title': 'Music',
                 'hero.subtitle': '音楽と共に歩む人生 🎶',
                 'hero.welcome': '私の音楽の旅へようこそ',
                 
@@ -105,12 +107,14 @@ class LanguageManager {
             },
             
             en: {
-                'nav.home': 'Home',
-                'nav.about': 'About',
-                'nav.skills': 'Skills',
-                'nav.contact': 'Contact',
-                
-                'hero.title': 'Music Soul',
+                'nav.home': 'HOME',
+                'nav.about': 'ABOUT',
+                'nav.hololive': 'HOLOLIVE',
+                'nav.music': 'MUSIC',
+                'nav.watch': 'WATCH',
+                'nav.contact': 'CONTACT',
+
+                'hero.title': 'Music',
                 'hero.subtitle': 'Life with Music 🎶',
                 'hero.welcome': 'Welcome to my musical journey',
                 

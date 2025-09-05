@@ -1,545 +1,158 @@
-/* ホロライブ公式風デザイン */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body { 
-  font-family: "Noto Sans JP", sans-serif; 
-  margin: 0; 
-  padding: 0; 
-  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 50%, #006699 100%);
-  min-height: 100vh;
-  color: #333;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* 背景のアニメーション要素 */
-body::before {
-  content: '';
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="%23ffffff" opacity="0.15"/><circle cx="40" cy="80" r="1" fill="%23ffffff" opacity="0.2"/></svg>') repeat;
-  animation: float 20s infinite linear;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes float {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-header { 
-  background: linear-gradient(90deg, #ffffff 0%, #f0f8ff 100%);
-  box-shadow: 0 2px 20px rgba(0, 132, 255, 0.3);
-  padding: 2rem 2rem;
-  position: fixed; 
-  top: 0; 
-  width: 100%; 
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-  left: 0;
-  right: 0;
-  min-height: 80px;
-}
-
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0 2rem;
-  position: relative;
-  box-sizing: border-box;
-  min-height: 60px;
-}
-
-.logo img {
-  height: 50px;
-  filter: drop-shadow(2px 2px 4px rgba(0, 132, 255, 0.3));
-}
-
-/* ハンバーガーメニューボタン */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1001;
-}
-
-.hamburger span {
-  width: 25px;
-  height: 3px;
-  background: linear-gradient(135deg, #00d4ff, #0084ff);
-  margin: 3px 0;
-  transition: 0.3s;
-  border-radius: 2px;
-}
-
-.hamburger.active span:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -6px);
-}
-
-/* ナビゲーションメニュー */
-.main-nav {
-  display: flex;
-  align-items: center;
-}
-
-.main-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  margin: 0;
-}
-
-.main-nav a {
-  text-decoration: none;
-  color: #0084ff;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  position: relative;
-  padding: 0.5rem 0;
-}
-
-.main-nav a:hover {
-  color: #006699;
-  transform: translateY(-2px);
-}
-
-.main-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #00d4ff, #0084ff);
-  transition: width 0.3s ease;
-}
-
-.main-nav a:hover::after {
-  width: 100%;
-}
-
-/* 言語切り替えボタン */
-.language-buttons {
-  display: flex;
-  gap: 5px;
-}
-
-.JP-button, .EN-button {
-  background: linear-gradient(135deg, #00d4ff, #0084ff);
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 20px;
-  margin-left: 5px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.JP-button::before, .EN-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
-}
-
-.JP-button:hover::before, .EN-button:hover::before {
-  left: 100%;
-}
-
-.JP-button:hover, .EN-button:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 132, 255, 0.4);
-}
-
-/* 言語切り替えアニメーション */
-.language-switch-animation {
-  animation: languageSwitch 0.6s ease-in-out;
-}
-
-@keyframes languageSwitch {
-  0% { opacity: 1; transform: translateY(0); }
-  50% { opacity: 0.5; transform: translateY(-10px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-section { 
-  max-width: calc(100% - 4rem); 
-  margin: 160px 2rem 2rem; 
-  padding: 3rem; 
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 60px rgba(0, 132, 255, 0.2);
-  border-radius: 20px;
-  text-align: center;
-  position: relative;
-  z-index: 10;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-sizing: border-box;
-}
-
-/* ホロライブメンバー選択機能のスタイル */
-.hololive-selector {
-  text-align: center;
-  padding: 2rem;
-}
-
-.hololive-selector h1 {
-  background: linear-gradient(135deg, #0084ff, #00d4ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  font-weight: 700;
-  text-shadow: none;
-  position: relative;
-}
-
-.hololive-selector h1::after {
-  content: '⭐';
-  position: absolute;
-  top: -10px;
-  right: -30px;
-  color: #ffd700;
-  animation: sparkle 2s infinite;
-}
-
-@keyframes sparkle {
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
-  50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
-}
-
-.select-button {
-  background: linear-gradient(135deg, #00d4ff 0%, #0084ff 50%, #006699 100%);
-  color: white;
-  border: none;
-  padding: 20px 40px;
-  font-size: 1.3rem;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 8px 25px rgba(0, 132, 255, 0.4);
-  transition: all 0.3s ease;
-  margin: 2rem;
-  font-weight: 600;
-  position: relative;
-  overflow: hidden;
-}
-
-.select-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
-}
-
-.select-button:hover::before {
-  left: 100%;
-}
-
-.select-button:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 15px 40px rgba(0, 132, 255, 0.6);
-}
-
-.select-button:active {
-  transform: translateY(-2px) scale(0.98);
-}
-
-#colorDisplay {
-  font-size: 1.8rem;
-  margin: 2rem 0;
-  color: #006699;
-  font-weight: 500;
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
-  border-radius: 15px;
-  border: 2px solid rgba(0, 132, 255, 0.2);
-}
-
-.member-card {
-  background: linear-gradient(135deg, #00d4ff 0%, #0084ff 50%, #006699 100%);
-  padding: 2rem;
-  border-radius: 20px;
-  margin: 2rem auto;
-  max-width: 600px;
-  box-shadow: 0 15px 50px rgba(0, 132, 255, 0.4);
-  color: white;
-  transform: scale(0);
-  transition: transform 0.6s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.member-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  animation: rotate 3s linear infinite;
-}
-
-@keyframes rotate {
-  100% { transform: rotate(360deg); }
-}
-
-.member-card.show {
-  transform: scale(1);
-}
-
-.member-name {
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-  position: relative;
-  z-index: 1;
-}
-
-.member-description {
-  font-size: 1.2rem;
-  opacity: 0.95;
-  position: relative;
-  z-index: 1;
-}
-
-footer { 
-  text-align: center; 
-  padding: 2rem; 
-  color: rgba(255, 255, 255, 0.8); 
-  font-size: 0.9rem;
-  position: relative;
-  z-index: 10;
-}
-
-/* ===== レスポンシブデザイン ===== */
-
-/* タブレット対応 (768px以下) */
-@media screen and (max-width: 768px) {
-  header {
-    padding: 1rem;
-  }
-  
-  .site-header {
-    flex-wrap: wrap;
-  }
-  
-  .hamburger {
-    display: flex;
-  }
-  
-  .main-nav {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
-    backdrop-filter: blur(20px);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: left 0.3s ease;
-    z-index: 999;
-  }
-  
-  .main-nav.active {
-    left: 0;
-  }
-  
-  .main-nav ul {
-    flex-direction: column;
-    gap: 3rem;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans JP', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    .nav-links a:hover { color: #4c8a4c; }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #4c8a4c;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .language-selector {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+    .lang-btn:hover { background: rgba(76, 138, 76, 0.3); border-color: #4c8a4c; }
+    .lang-btn.active { background: #4c8a4c; border-color: #4c8a4c; }
+    .section {
+      padding: 5rem 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .section-title {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: linear-gradient(45deg, #4c8a4c, #779977);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hololive-selector p {
     text-align: center;
   }
-  
-  .main-nav a {
-    font-size: 1.5rem;
-    font-weight: 600;
-    display: block;
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    background: rgba(0, 132, 255, 0.1);
-    margin: 0.5rem 0;
-  }
-  
-  .main-nav a:hover {
-    background: rgba(0, 132, 255, 0.2);
-    transform: scale(1.05);
-  }
-  
-  .language-buttons {
-    margin-top: 2rem;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .JP-button, .EN-button {
-    padding: 12px 24px;
-    font-size: 1.1rem;
-  }
-  
-  section {
-    margin: 140px 1rem 2rem;
-    padding: 2rem 1rem;
-    max-width: calc(100% - 2rem);
-  }
-  
-  .hololive-selector h1 {
-    font-size: 2.2rem;
-  }
-  
-  .select-button {
-    padding: 15px 30px;
-    font-size: 1.1rem;
-    margin: 1.5rem 0.5rem;
-  }
-  
-  .member-card {
-    max-width: 90%;
-    padding: 1.5rem;
-  }
-  
-  .member-name {
-    font-size: 2rem;
-  }
-}
-
-/* スマートフォン対応 (480px以下) */
-@media screen and (max-width: 480px) {
-  header {
-    padding: 1.2rem 1rem;
-    min-height: 70px;
-  }
-  
-  .site-header {
-    padding: 0 1rem;
-    min-height: 50px;
-  }
-  
-  .logo img {
-    height: 35px;
-  }
-  
-  .hamburger span {
-    width: 20px;
-    height: 2px;
-  }
-  
-  section {
-    margin: 120px 0.5rem 1rem;
-    padding: 1.5rem 0.8rem;
-    max-width: calc(100% - 1rem);
-  }
-  
-  .hololive-selector h1 {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .hololive-selector h1::after {
-    right: -20px;
-    top: -8px;
-    font-size: 0.8em;
-  }
-  
-  .select-button {
-    padding: 12px 25px;
-    font-size: 1rem;
-    margin: 1rem 0.2rem;
-  }
-  
   #colorDisplay {
-    font-size: 1.4rem;
-    padding: 0.8rem;
-    line-height: 1.4;
+    text-align: center;
   }
-  
-  .member-card {
-    padding: 1.2rem;
-    margin: 1.5rem auto;
-  }
-  
-  .member-name {
-    font-size: 1.6rem;
-    margin-bottom: 0.8rem;
-  }
-  
-  .member-description {
-    font-size: 1rem;
-  }
-  
-  footer {
-    padding: 1.5rem 1rem;
-    font-size: 0.8rem;
-  }
-}
-
-/* 大画面対応 (1200px以上) */
-@media screen and (min-width: 1200px) {
-  .site-header {
-    max-width: 100%;
-    padding: 0 3rem;
-    min-height: 70px;
-  }
-  
-  .main-nav ul {
-    gap: 3rem;
-  }
-  
-  section {
-    max-width: calc(100% - 6rem);
-    margin: 180px 3rem 2rem;
-    padding: 4rem;
-  }
-  
-  .hololive-selector h1 {
-    font-size: 3.5rem;
-  }
-  
-  .select-button {
-    padding: 25px 50px;
-    font-size: 1.4rem;
-  }
-}
+    #colorDisplay {
+      text-align: center;
+    }
+    .hololive-selector {
+      background: rgba(45, 74, 45, 0.2);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 5rem auto 2rem auto;
+      max-width: 800px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .select-button {
+  background: linear-gradient(45deg, #4c8a4c, #779977);
+  color: #fff;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(76, 138, 76, 0.3);
+  margin-bottom: 2rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+    }
+    .select-button:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(76, 138, 76, 0.4); }
+    .select-button:active { transform: translateY(0); }
+    .member-card {
+      margin-top: 2rem;
+      background: rgba(45, 74, 45, 0.3);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(76, 138, 76, 0.2);
+      display: none;
+    }
+    .member-card.show { display: block; animation: fadeInUp 0.6s ease forwards; }
+    .member-name { font-size: 2rem; font-weight: bold; color: #4c8a4c; margin-bottom: 1rem; }
+    .member-description { color: #ccc; font-size: 1.1rem; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #fff;
+      font-size: 0.9rem;
+      background-color: rgba(44, 62, 80, 0.9);
+      margin-top: 3rem;
+      backdrop-filter: blur(10px);
+    }
+    footer p { margin: 0; }
+    @media (max-width: 768px) {
+      .nav-container { flex-direction: column; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .section-title { font-size: 2rem; }
+      .hololive-selector { padding: 2rem; margin: 7rem 1rem 2rem 1rem; }
+      .member-name { font-size: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .section-title { font-size: 1.2rem; }
+      .hololive-selector { padding: 1rem; }
+    }
