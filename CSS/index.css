@@ -1,3 +1,19 @@
+/* Skillsセクション：常に3列で並べる */
+#skills .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+@media (max-width: 900px) {
+    #skills .skills-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 600px) {
+    #skills .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
 /* MUSICセクション専用：カードを3列で並べる */
 #music .content-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -245,6 +261,17 @@ body {
         transform: translateY(0);
     }
 }
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #fff;
+    font-size: 0.9rem;
+    background-color: rgba(44, 62, 80, 0.9);
+    margin-top: 3rem;
+    backdrop-filter: blur(10px);
+}
+footer p { margin: 0; }
+
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;

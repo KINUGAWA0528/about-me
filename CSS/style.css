@@ -9,6 +9,18 @@
   box-sizing: border-box;
 }
 
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  background-color: rgba(44, 62, 80, 0.9);
+  margin-top: 3rem;
+  backdrop-filter: blur(10px);
+}
+footer p { margin: 0; }
+
+
 .logo {
   margin-left: 3rem;
 }

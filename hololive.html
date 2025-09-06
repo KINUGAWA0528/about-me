@@ -74,22 +74,18 @@
                 </p>
             </div>
         </div>
-    </section>
+  </section>
 
   <footer>
     <p data-ja="&copy; 2025 Hololive Production Fan Site ✨" data-en="&copy; 2025 Hololive Production Fan Site ✨">&copy; 2025 Hololive Production Fan Site ✨</p>
     <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;" 
-       data-ja="このサイトはファンメイドです" 
-       data-en="This is a fan-made site">
-      このサイトはファンメイドです / This is a fan-made site
+       data-ja="このサイトはファンメイドです" data-en="This site is fan-made.">
     </p>
   </footer>
 
   <script>
-    // 現在の言語状態
     let currentLanguage = 'ja';
     
-    // 言語切り替え関数
     function switchLanguage(lang) {
       if (currentLanguage === lang) return; // 同じ言語の場合は何もしない
       
@@ -97,11 +93,9 @@
       const htmlElement = document.getElementById('htmlElement');
       htmlElement.lang = lang;
       
-      // アニメーション効果を追加
       const mainContent = document.querySelector('.hololive-selector');
       mainContent.classList.add('language-switch-animation');
       
-      // 全ての多言語対応要素を更新
       const elements = document.querySelectorAll('[data-ja][data-en]');
       elements.forEach(element => {
         const text = element.getAttribute(`data-${lang}`);
@@ -113,25 +107,20 @@
           }
         }
       });
-      
-      // ボタンの状態を更新
+
       updateButtonStates(lang);
       
-      // ローカルストレージに保存
       localStorage.setItem('preferredLanguage', lang);
       
-      // アニメーション完了後にクラスを削除
       setTimeout(() => {
         mainContent.classList.remove('language-switch-animation');
       }, 600);
     }
     
-    // ボタンの状態更新
     function updateButtonStates(lang) {
       const jpButton = document.querySelector('.JP-button');
       const enButton = document.querySelector('.EN-button');
       
-      // アクティブ状態のスタイル
       if (lang === 'ja') {
         jpButton.style.opacity = '1';
         jpButton.style.transform = 'scale(1.1)';
@@ -145,12 +134,10 @@
       }
     }
     
-    // ページ読み込み時に保存された言語設定を復元
     window.addEventListener('load', () => {
       const savedLanguage = localStorage.getItem('preferredLanguage') || 'ja';
       switchLanguage(savedLanguage);
       
-      // アニメーション
       const section = document.querySelector('.hololive-selector');
       section.style.opacity = '0';
       section.style.transform = 'translateY(30px)';
@@ -250,18 +237,14 @@
       const memberCard = document.getElementById('memberCard');
       const memberName = document.getElementById('memberName');
       
-      // ボタンを一時的に無効化
       const button = document.querySelector('.select-button');
       button.disabled = true;
       
-      // 現在の言語に応じてボタンテキストを設定
       const buttonText = currentLanguage === 'ja' ? '選択中... 🎲' : 'Selecting... 🎲';
       button.textContent = buttonText;
       
-      // アニメーション効果のためにカードを一度隠す
       memberCard.classList.remove('show');
       
-      // 少し遅れてから新しいメンバーを表示
       setTimeout(() => {
         const memberDisplayName = currentLanguage === 'ja' ? randomMember.name : randomMember.nameEn;
         const resultText = currentLanguage === 'ja' ? 
@@ -275,7 +258,6 @@
         memberName.textContent = `${randomMember.emoji} ${memberDisplayName} ${randomMember.emoji}`;
         memberCard.classList.add('show');
         
-        // ボタンを再有効化
         button.disabled = false;
         const finalButtonText = currentLanguage === 'ja' ? 
           '🎲 ホロメンを選ぶ 🎲' : 

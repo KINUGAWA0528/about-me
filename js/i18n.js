@@ -99,7 +99,7 @@ class LanguageManager {
                 'home.title': 'HOME',
                 'home.subtitle': 'このサイトについて',
                 
-                'skills.title': 'スキル',
+                'skills.title': 'INTERESTS',
                 'skills.piano.title': 'Guitar',
                 'skills.piano.desc': '15年の経験を持つギター演奏。クラシックからジャズまで幅広いスタイルに対応。',
                 'skills.guitar.title': 'Bass',

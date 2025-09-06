@@ -1,3 +1,10 @@
+.card-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px 15px 0 0;
+}
 /* ベーススタイル */
 * {
     margin: 0;
@@ -30,6 +37,18 @@ body {
         radial-gradient(circle at 20% 80%, rgba(76, 138, 76, 0.3) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(119, 153, 119, 0.3) 0%, transparent 50%);
 }
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  background-color: rgba(44, 62, 80, 0.9);
+  margin-top: 3rem;
+  backdrop-filter: blur(10px);
+}
+footer p { margin: 0; }
+
 .hero-content {
     z-index: 2;
     position: relative;
